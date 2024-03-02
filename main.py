@@ -19,7 +19,7 @@ def main():
     for port in ports:
         syn_packet = IP(dst=ip_address) / TCP(sport=RandShort(), dport=port, flags="S")
         response = sr1(syn_packet, timeout=Timeout)
-        if response and response.haslayer(TCP) and response.TCP.flags & 0x1F == 0x12:
+        if response and response.haslayer(TCP) and response[TCP].flags & 0x1F == 0x12:
             print(f"the {port} is open")
 
 
