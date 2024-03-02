@@ -10,11 +10,12 @@ from scapy.all import *
 from scapy.layers.inet import TCP, IP
 
 Timeout = 0.5
+PORTS = range(20, 1025)
 
 
 def main():
     ip_address = input("enter ip:")
-    ports = range(20, 1025)
+    ports = PORTS
     for port in ports:
         syn_packet = IP(dst=ip_address) / TCP(sport=RandShort(), dport=port, flags="S")
         response = sr1(syn_packet, timeout=Timeout)
